@@ -76,8 +76,6 @@ def update_person(jwt, id):
             lastname = body.get('lastname')
             birthdate = body.get('birthdate')
 
-            print(body)
-
             if firstname:
                 person.firstname = firstname
             if lastname: 
@@ -139,7 +137,6 @@ def add_event(jwt):
 
     body = request.get_json()
 
-    print(body)
     if not ('event_type' in body and 'date' in body):
         abort(404)
 
