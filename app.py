@@ -1,7 +1,10 @@
 import os
-from flask import Flask, request, jsonify, abort
+from flask import Flask, request, jsonify, abort, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_cors import CORS
+
+from auth import AuthError, requires_auth
 
 app = Flask(__name__)
 
@@ -9,6 +12,8 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+CORS(app)
 
 from models import Person, Event
 
@@ -18,7 +23,8 @@ PERSONS
 '''
 
 @app.route("/persons", methods=['GET'])
-def get_persons(): 
+@requires_auth('get:requests')
+def get_persons(jwt): 
 
     try:
         persons = Person.query.all()
@@ -33,8 +39,8 @@ def get_persons():
 
 
 @app.route("/persons", methods=['POST'])
-# @requires_auth('post:drinks')
-def add_person():
+@requires_auth('post:requests')
+def add_person(jwt):
 
     body = request.get_json()
 
@@ -57,8 +63,8 @@ def add_person():
         abort(422)
 
 @app.route("/persons/<id>", methods=['PATCH'])
-# @requires_auth('post:drinks')
-def update_person(id):
+@requires_auth('patch:requests')
+def update_person(jwt, id):
 
     person = Person.query.get(id)
 
@@ -90,8 +96,8 @@ def update_person(id):
         abort(404)
 
 @app.route("/persons/<id>", methods=['DELETE'])
-# @requires_auth('delete:drinks')
-def delete_person(id):
+@requires_auth('delete:requests')
+def delete_person(jwt, id):
 
     person = Person.query.get(id)
 
@@ -113,7 +119,8 @@ EVENTS
 '''
 
 @app.route("/events", methods=['GET'])
-def get_events(): 
+@requires_auth('get:requests')
+def get_events(jwt): 
 
     try:
         events = Event.query.all()
@@ -127,8 +134,8 @@ def get_events():
 
 
 @app.route("/events", methods=['POST'])
-# @requires_auth('post:drinks')
-def add_event():
+@requires_auth('post:requests')
+def add_event(jwt):
 
     body = request.get_json()
 
@@ -152,7 +159,6 @@ def add_event():
 
 
 
-
 # Error Handling
 
 @app.errorhandler(422)
@@ -172,11 +178,13 @@ def not_found(error):
         "message": str(error)
     }), 404
 
-
-
-
-
-
+@app.errorhandler(AuthError)
+def handle_auth_error(ex):
+    return jsonify({
+        "success": False,
+        "error": ex.status_code,
+        'message': ex.error
+    }), 401
 
 if __name__ == '__main__':
     app.run()
