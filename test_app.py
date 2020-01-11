@@ -6,13 +6,16 @@ from flask_sqlalchemy import SQLAlchemy
 from app import app, db
 from models import Person, Event
 
+
 MEMBER_TOKEN = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJEVTRRekE0UkRBMU16a3lNa1ZEUTBJek5UQkRORUV6TUVFME4wUTVNRUUzTkROR1FURXhSZyJ9.eyJpc3MiOiJodHRwczovL3NhZWxzYS5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWUxMGUxZjc3ZGE0NWQwZTk1N2E5NDRiIiwiYXVkIjoiaHR0cHM6Ly9mYW1pbHktdHJlZSIsImlhdCI6MTU3ODc0OTY0MSwiZXhwIjoxNTc4ODM2MDQxLCJhenAiOiJSOWpScXAzNVQxQnFkTmZoZnlOZGFMMjFtZjFrQ0Q1OSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOnJlcXVlc3RzIiwiZ2V0OnJlcXVlc3RzIiwicGF0Y2g6cmVxdWVzdHMiLCJwb3N0OnJlcXVlc3RzIl19.K_sVcyENUow63gt1C_aq9pGHXV5yHLfdYYG9E-Ltfdz8mF4zvWG5-MEvLna71IPjx2wXKsrRJRuNcNVcQ8jMzbLs6B1BEtX5y163BGJ7VqZj3EQZmhBeQCs1-IWV9lghPjPBcwRxaUivSmxlYx4lUfZyaSGtZUpshapnKuifpiMgucvnnapY7wTQrAzmI-a4TO7S7IG_2g234sdb2FfimmWLddXWJkcSem1ElnZNgt4k-Yrm6c8g-slamP0wPz0kQLpwuvU-P2WbtZ01ggFGNyHpzZYOLjstMR2NbLp4HUI3B2WBfzcU88J7c8KGySfkFfApJigb9z7FoI3EBil2mg'
 
 class BasicTest(unittest.TestCase):
     def setUp(self):
 
-        app.config.from_object(os.environ['TEST_SETTINGS'])
+        app.config.from_object('config.TestingConfig')
+        app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql:///familytree_test"
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+        
         self.client = app.test_client()
         self.headers = {'Content-Type': 'application/json'}
 
