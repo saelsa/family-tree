@@ -1,0 +1,788 @@
+{
+	"info": {
+		"_postman_id": "48df4ea5-a03d-4114-889b-0dd85b843136",
+		"name": "familytree",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "/persons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d38b0c91-7c84-49d3-98fb-22eb6d092459",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"John\",\n    \"lastname\": \"Doe\",\n    \"birthdate\": \"01.01.2000\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/persons",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c81df8ad-1796-43a4-9d3e-289e989ea63c",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/persons",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eedbe3c0-7e78-4e0b-b137-4cc75341e50d",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Jane\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/persons/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a1c8d0c3-6f50-406c-97ef-cfbf7790cd70",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/persons/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "94f89032-3f0a-4cc4-92dd-4acbe60e938d",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_type\": \"wedding\",\n    \"date\": \"01.01.2020\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/events",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "efea7dfa-1df9-40e3-bb28-67a4bf4c7611",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/events",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "member",
+			"item": [
+				{
+					"name": "/persons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d38b0c91-7c84-49d3-98fb-22eb6d092459",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"John\",\n    \"lastname\": \"Doe\",\n    \"birthdate\": \"01.01.2000\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/persons",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c81df8ad-1796-43a4-9d3e-289e989ea63c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/persons",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eedbe3c0-7e78-4e0b-b137-4cc75341e50d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Jane\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/persons/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a1c8d0c3-6f50-406c-97ef-cfbf7790cd70",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/persons/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "94f89032-3f0a-4cc4-92dd-4acbe60e938d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_type\": \"wedding\",\n    \"date\": \"01.01.2020\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/events",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "efea7dfa-1df9-40e3-bb28-67a4bf4c7611",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/events",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{member-token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "529ec239-5c3c-40dc-8a5b-cbc254c79e89",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d40ac888-62eb-434a-957a-a3d35ec8b712",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "guest",
+			"item": [
+				{
+					"name": "/persons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d38b0c91-7c84-49d3-98fb-22eb6d092459",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"John\",\n    \"lastname\": \"Doe\",\n    \"birthdate\": \"01.01.2000\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/persons",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c81df8ad-1796-43a4-9d3e-289e989ea63c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/persons",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eedbe3c0-7e78-4e0b-b137-4cc75341e50d",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Jane\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/persons/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/persons/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a1c8d0c3-6f50-406c-97ef-cfbf7790cd70",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/persons/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"persons",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "94f89032-3f0a-4cc4-92dd-4acbe60e938d",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_type\": \"wedding\",\n    \"date\": \"01.01.2020\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/events",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "efea7dfa-1df9-40e3-bb28-67a4bf4c7611",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/events",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{guest-token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8192d1e7-e1b5-4ec1-a7dc-24abcd8d8cf1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5c2e71d9-e7c2-42d4-8d1d-5e09328356d0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8440b604-5f91-4fd0-be5c-15676390888e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ff99f50f-1e24-4f2c-b58e-2e131fba946a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "36591aed-3c89-4930-85f2-68e4b0ead39f",
+			"key": "host",
+			"value": "localhost:5000",
+			"type": "string"
+		},
+		{
+			"id": "29c5026d-c702-4fd5-84e6-d54717a28b7f",
+			"key": "guest-token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJEVTRRekE0UkRBMU16a3lNa1ZEUTBJek5UQkRORUV6TUVFME4wUTVNRUUzTkROR1FURXhSZyJ9.eyJpc3MiOiJodHRwczovL3NhZWxzYS5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWUxMGUxYzc3ZGE0NWQwZTk1N2E5NDQ4IiwiYXVkIjpbImh0dHBzOi8vZmFtaWx5LXRyZWUiLCJodHRwczovL3NhZWxzYS5ldS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTc4ODU3ODE2LCJleHAiOjE1Nzg5NDQyMTYsImF6cCI6IlI5alJxcDM1VDFCcWROZmhmeU5kYUwyMW1mMWtDRDU5Iiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImdldDpyZXF1ZXN0cyJdfQ.bvcdvCds64yyjM6vhe5wHcITMYDfRKZT5WLfrAmBMxuv7LS7qzFxM1xrr97ZZybLBmKdmkzPalRtSM6Y1K0VSKH5BIYzggvr7_WeGRW2Y6MIZIlJ4cpjEw_d78Dmz0VgQVarABZ-MTBL1h0jIFDhqDhijGO-_waYoywpHPFwfuUGg7nGkKtkWXy5DpzAI_ByLwsQgV6YGas3lVsJqeAdcYhdbM5LzsH-ODkoM6O5vXYduTUozGA5PBbEbDO_AdnJWUBEviXGnrNHGbr_J_PR49YeRc6IehsWY_fTtUmOUcwugBczXhtTOrbIK_SRgZWmhkETWRWOh68c2yTxtnJmGw",
+			"type": "string"
+		},
+		{
+			"id": "fecea4f0-aaf4-4f28-9fea-5ceb1b9bcd05",
+			"key": "member-token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJEVTRRekE0UkRBMU16a3lNa1ZEUTBJek5UQkRORUV6TUVFME4wUTVNRUUzTkROR1FURXhSZyJ9.eyJpc3MiOiJodHRwczovL3NhZWxzYS5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWUxMGUxZjc3ZGE0NWQwZTk1N2E5NDRiIiwiYXVkIjpbImh0dHBzOi8vZmFtaWx5LXRyZWUiLCJodHRwczovL3NhZWxzYS5ldS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTc4ODU4MzQzLCJleHAiOjE1Nzg5NDQ3NDMsImF6cCI6IlI5alJxcDM1VDFCcWROZmhmeU5kYUwyMW1mMWtDRDU5Iiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTpyZXF1ZXN0cyIsImdldDpyZXF1ZXN0cyIsInBhdGNoOnJlcXVlc3RzIiwicG9zdDpyZXF1ZXN0cyJdfQ.NjCRTzACtPM2Xgx92ma6RY7TXvA54vF3OYputM7drdE8IF2ieaHYl9tuG0FuA7dh_87ZTR-Yo4-VAdAsZ9QI2CnLaDR7zJD8JCX2Iw7kcK-sZApoDhWrBIbMtqMKmkmKFKL7uJ99CQ2apWav9fYcpb4dna0BqS4JIh5Dim4ZaG4VA6pNfsJ4mpAoxjouCE2RCPrTyWRUJOfVACj21LMSwT-zFhXlJLPej3rB-T7GY_a0XZ8J9zdAUc9kZ4m78xxeRg5E4x8UdpSccVEz8ZQlGnCTw6pehW1Wc0qkU31mlHulZf1OBU9LNxaAURJiKtwa2itwIe9NA4lHaq_jygcjtg",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
