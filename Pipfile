@@ -16,6 +16,9 @@ psycopg2-binary = "*"
 gunicorn = "*"
 flask-cors = "*"
 python-jose = "*"
+requests = "*"
+authlib = "*"
+six = "*"
 
 [requires]
 python_version = "3.6"

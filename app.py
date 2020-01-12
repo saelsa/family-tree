@@ -1,14 +1,29 @@
-import os
-from flask import Flask, request, jsonify, abort, session, redirect, url_for
+from os import environ as env
+from werkzeug.exceptions import HTTPException
+from functools import wraps
+
+from flask import Flask, request, jsonify, abort, redirect, render_template, session, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_cors import CORS
+import json
 
-from auth import AuthError, requires_auth
+from auth import AuthError, requires_auth, requires_signed_in
+from authlib.flask.client import OAuth
+from six.moves.urllib.parse import urlencode
+
+import constants
+
+AUTH0_CALLBACK_URL = constants.AUTH0_CALLBACK_URL
+AUTH0_CLIENT_ID = constants.AUTH0_CLIENT_ID
+AUTH0_CLIENT_SECRET = constants.AUTH0_CLIENT_SECRET
+AUTH0_DOMAIN = constants.AUTH0_DOMAIN
+AUTH0_BASE_URL = 'https://' + constants.AUTH0_DOMAIN
+AUTH0_AUDIENCE = constants.AUTH0_AUDIENCE
 
 app = Flask(__name__)
 
-app.config.from_object(os.environ['APP_SETTINGS'])
+app.config.from_object(env['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -16,6 +31,60 @@ db = SQLAlchemy(app)
 CORS(app)
 
 from models import Person, Event
+
+oauth = OAuth(app)
+
+auth0 = oauth.register(
+    'auth0',
+    client_id=AUTH0_CLIENT_ID,
+    client_secret=AUTH0_CLIENT_SECRET,
+    api_base_url=AUTH0_BASE_URL,
+    access_token_url=AUTH0_BASE_URL +'/oauth/token',
+    authorize_url= AUTH0_BASE_URL + '/authorize',
+    client_kwargs={
+        'scope': 'openid profile email',
+    },
+)
+
+'''
+AUTHENTICATION
+'''
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+@app.route('/login')
+def login():
+    return auth0.authorize_redirect(redirect_uri=AUTH0_CALLBACK_URL, audience=AUTH0_AUDIENCE)
+
+@app.route('/callback')
+def callback_handling():
+    # Handles response from token endpoint
+
+    res = auth0.authorize_access_token()
+    token = res.get('access_token')
+
+    # Store the user information in flask session.
+    session['jwt_token'] = token
+
+    return redirect('/dashboard')
+
+@app.route('/logout')
+def logout():
+    # Clear session stored data
+    session.clear()
+    # Redirect user to logout endpoint
+    params = {'returnTo': url_for('home', _external=True), 'client_id': AUTH0_CLIENT_ID}
+    return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
+
+@app.route('/dashboard')
+@requires_signed_in
+def dashboard():
+    return render_template('dashboard.html',
+                           token=session['jwt_token'],
+                           )
+
 
 
 '''
@@ -155,8 +224,9 @@ def add_event(jwt):
         abort(422)
 
 
-
-# Error Handling
+'''
+Error Handling
+'''
 
 @app.errorhandler(422)
 def unprocessable(error):
